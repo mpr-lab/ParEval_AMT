@@ -16,14 +16,14 @@ export HF_DATASETS_CACHE="${HF_HOME}/datasets"
 
 module load conda/latest
 conda activate hpc_llm
-cd /work/pi_mrobson_smith_edu/ParEval_amt/generate
+cd /work/pi_mrobson_smith_edu/chapelers/generate
 source ../../.hpc_src
 
 declare -a models=("hpc-coder" "magicoder" "starcoder2-15b")
 curr_model=${models[$SLURM_ARRAY_TASK_ID]}
 echo "Running model: $curr_model"
 
-BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_hpx/fft"
+BASE_OUT="/work/pi_mrobson_smith_edu/scratch/abe_generation_chapel/fft"
 CACHE_FILE="${BASE_OUT}/cache/${curr_model}.json"
 OUT_FILE="${BASE_OUT}/cumulative_out.json"
 
