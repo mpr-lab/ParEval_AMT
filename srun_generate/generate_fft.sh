@@ -7,8 +7,13 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=80G #comfortable min for phind
 #SBATCH --constraint=a100
-#SBATCH --time=9:00:00
+#SBATCH --time=11:00:00
 #SBATCH -a 0-2
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=mputzer@smith.edu
+
+#Debug step
+set -x
 
 export HF_HOME="/work/pi_mrobson_smith_edu/scratch/hf"
 export HF_TRANSFORMERS_CACHE="${HF_HOME}"
@@ -16,19 +21,19 @@ export HF_DATASETS_CACHE="${HF_HOME}/datasets"
 
 module load conda/latest
 conda activate hpc_llm
-cd /work/pi_mrobson_smith_edu/ParEval_amt/generate
-source ../../.hpc_src
+cd ../generate  #Change this to working directory
+source /work/pi_mrobson_smith_edu/.hpc_src #May not work (Could do absolute path, always in root working directory for now)
 
 declare -a models=("hpc-coder" "magicoder" "starcoder2-15b")
 curr_model=${models[$SLURM_ARRAY_TASK_ID]}
 echo "Running model: $curr_model"
 
-BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_hpx/fft"
+BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_legion/fft"
 CACHE_FILE="${BASE_OUT}/cache/${curr_model}.json"
 OUT_FILE="${BASE_OUT}/cumulative_out.json"
 
 #GEOMETRY 
-python generate_with_metrics.py --prompts "/work/pi_mrobson_smith_edu/ParEval_amt/prompts/fft.json" \
+python generate_with_metrics.py --prompts "/work/pi_mrobson_smith_edu/legion_team/ParEval_amt/prompts/fft.json" \
         --model_names $curr_model \
         --output "${OUT_FILE}" \
         --num_samples_per_prompt 100 \
