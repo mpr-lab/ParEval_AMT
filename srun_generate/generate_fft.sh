@@ -33,7 +33,7 @@ CACHE_FILE="${BASE_OUT}/cache/${curr_model}.json"
 OUT_FILE="${BASE_OUT}/cumulative_out.json"
 
 #GEOMETRY 
-python generate_with_metrics.py --prompts "/work/pi_mrobson_smith_edu/legion_team/ParEval_amt/prompts/fft.json" \
+python generate_with_metrics.py --prompts "../prompts/sort.json" \
         --model_names $curr_model \
         --output "${OUT_FILE}" \
         --num_samples_per_prompt 100 \
