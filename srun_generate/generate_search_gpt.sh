@@ -16,7 +16,7 @@ export HF_DATASETS_CACHE="${HF_HOME}/datasets"
 cd ../generate
 source ~/work/.hpc_src
 
-BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_hpx/search"
+BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_chapel/search"
 CACHE_FILE="${BASE_OUT}/cache/gpt-5.json"
 OUT_FILE="${BASE_OUT}/cumulative_out.json"
 
