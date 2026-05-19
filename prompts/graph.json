@@ -1,37 +1,37 @@
 [
     {
         "problem_type": "graph",
-        "language": "cpp",
+        "language": "chapel",
         "name": "15_edge_graph_count",
         "parallelism_model": "chapel",
-        "prompt": "/* Count the number of edges in the directed graph defined by the adjacency matrix A.\n A is an NxN adjacency matrix stored in row-major. A represents a directed graph.\n Use Chapel to compute in parallel. Example:\n\n\t input: [[0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 1, 1, 0]]\n output: 6\n*/\nint edgeCount(std::vector<int> const& A, size_t N) {"
+        "prompt": "// Count the number of edges in the directed graph defined by the adjacency matrix A.\n// A is an NxN adjacency matrix stored in row-major. A represents a directed graph.\n// Use Chapel to compute in parallel. Example:\n//\n//\t input: [[0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 1, 1, 0]]\n// output: 6\n//\nproc edgeCount(const A: [] int, N: int): int {"
     },
     {
         "problem_type": "graph",
-        "language": "cpp",
+        "language": "chapel",
         "name": "16_graph_largest_component",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the number of vertices in the largest component of the undirected graph defined by the adjacency matrix A.\n A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n Use Chapel to compute in parallel. Example:\n\n\t input: [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]\n output: 2\n*/\nint largestComponent(std::vector<int> const& A, size_t N) {"
+        "prompt": "// Return the number of vertices in the largest component of the undirected graph defined by the adjacency matrix A.\n// A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n// Use Chapel to compute in parallel. Example:\n//\n//\t input: [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]\n// output: 2\n//\nproc largestComponent(const A: [] int, N: int): int {"
     },
     {
         "problem_type": "graph",
-        "language": "cpp",
+        "language": "chapel",
         "name": "17_graph_highest_degree",
         "parallelism_model": "chapel",
-        "prompt": "/* Compute the highest node degree in the undirected graph. The graph is defined in the adjacency matrix A.\n A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n Use Chapel to compute in parallel. Example:\n\n\t input: [[0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 1, 1, 0]]\n output: 3\n*/\nint maxDegree(std::vector<int> const& A, size_t N) {"
+        "prompt": "// Compute the highest node degree in the undirected graph. The graph is defined in the adjacency matrix A.\n// A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n// Use Chapel to compute in parallel. Example:\n//\n//\t input: [[0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [1, 1, 1, 0]]\n// output: 3\n//\nproc maxDegree(const A: [] int, N: int): int {"
     },
     {
         "problem_type": "graph",
-        "language": "cpp",
+        "language": "chapel",
         "name": "18_graph_count_components",
         "parallelism_model": "chapel",
-        "prompt": "/* Count the number of connected components in the undirected graph defined by the adjacency matrix A.\n A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n\t Use Chapel to compute in parallel. Example:\n\n\t input: [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]\n output: 2\n*/\nint componentCount(std::vector<int> const& A, size_t N) {"
+        "prompt": "// Count the number of connected components in the undirected graph defined by the adjacency matrix A.\n// A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n//\t Use Chapel to compute in parallel. Example:\n//\n//\t input: [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]\n// output: 2\n//\nproc componentCount(const A: [] int, N: int): int {"
     },
     {
         "problem_type": "graph",
-        "language": "cpp",
+        "language": "chapel",
         "name": "19_graph_shortest_path",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the length of the shortest path from source to dest in the undirected graph defined by the adjacency matrix A.\n A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n Use Chapel to compute in parallel. Example:\n\n\t input: [[0, 1, 1, 0], [1, 0, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0]], source=0, dest=3\n output: 2\n*/\nint shortestPathLength(std::vector<int> const& A, size_t N, int source, int dest) {"
+        "prompt": "// Return the length of the shortest path from source to dest in the undirected graph defined by the adjacency matrix A.\n// A is an NxN adjacency matrix stored in row-major. A is an undirected graph.\n// Use Chapel to compute in parallel. Example:\n//\n//\t input: [[0, 1, 1, 0], [1, 0, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0]], source=0, dest=3\n// output: 2\n//\nproc shortestPathLength(const A: [] int, N: int, source: int, dest: int): int {"
     }
 ]

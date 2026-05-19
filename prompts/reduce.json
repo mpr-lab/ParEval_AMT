@@ -1,37 +1,37 @@
 [
     {
         "problem_type": "reduce",
-        "language": "cpp",
+        "language": "chapel",
         "name": "25_reduce_xor",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the logical XOR reduction of the vector of bools x.\n Use Chapel to reduce in parallel. Example:\n\n input: [false, false, false, true]\n output: true\n*/\nbool reduceLogicalXOR(std::vector<bool> const& x) {"
+        "prompt": "// Return the logical XOR reduction of the array of bools x.\n// Use Chapel to reduce in parallel. Example:\n//\n// input: [false, false, false, true]\n// output: true\n//\nproc reduceLogicalXOR(const x: [] bool): bool {"
     },
     {
         "problem_type": "reduce",
-        "language": "cpp",
+        "language": "chapel",
         "name": "26_reduce_product_of_inverses",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the product of the vector x with every odd indexed element inverted.\n i.e. x_0 * 1/x_1 * x_2 * 1/x_3 * x_4 ...\n Use Chapel to compute product in parallel. Example:\n\n input: [4, 2, 10, 4, 5]\n output: 25\n*/\ndouble productWithInverses(std::vector<double> const& x) {"
+        "prompt": "// Return the product of the array x with every odd indexed element inverted.\n// i.e. x_0 * 1/x_1 * x_2 * 1/x_3 * x_4 ...\n// Use Chapel to compute product in parallel. Example:\n//\n// input: [4, 2, 10, 4, 5]\n// output: 25\n//\nproc productWithInverses(const x: [] real): real {"
     },
     {
         "problem_type": "reduce",
-        "language": "cpp",
+        "language": "chapel",
         "name": "27_reduce_average",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the average of the vector x.\n Use Chapel to compute in parallel. Examples:\n\t\t\n\t input: [1, 8, 4, 5, 1]\n output: 3.8\n\n input: [2, 2, 2, 3]\n output: 2.25\n*/\ndouble average(std::vector<double> const& x) {"
+        "prompt": "// Return the average of the array x.\n// Use Chapel to compute in parallel. Examples:\n//\t\t\n//\t input: [1, 8, 4, 5, 1]\n// output: 3.8\n//\n// input: [2, 2, 2, 3]\n// output: 2.25\n//\nproc average(const x: [] real): real {"
     },
     {
         "problem_type": "reduce",
-        "language": "cpp",
+        "language": "chapel",
         "name": "28_reduce_smallest_odd_number",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the value of the smallest odd number in the vector x.\n Use Chapel to compute in parallel. Examples:\n\n input: [7, 9, 5, 2, 8, 16, 4, 1]\n output: 1\n\n input: [8, 36, 7, 2, 11]\n output: 7\n*/\nint smallestOdd(std::vector<int> const& x) {"
+        "prompt": "// Return the value of the smallest odd number in the array x.\n// Use Chapel to compute in parallel. Examples:\n//\n// input: [7, 9, 5, 2, 8, 16, 4, 1]\n// output: 1\n//\n// input: [8, 36, 7, 2, 11]\n// output: 7\n//\nproc smallestOdd(const x: [] int): int {"
     },
     {
         "problem_type": "reduce",
-        "language": "cpp",
+        "language": "chapel",
         "name": "29_reduce_sum_of_min_of_pairs",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the sum of the minimum value at each index of vectors x and y for all indices.\n i.e. sum = min(x_0, y_0) + min(x_1, y_1) + min(x_2, y_2) + ...\n Use Chapel to sum in parallel. Example:\n\n input: x=[3, 4, 0, 2, 3], y=[2, 5, 3, 1, 7]\n output: 10\n*/\ndouble sumOfMinimumElements(std::vector<double> const& x, std::vector<double> const& y) {"
+        "prompt": "// Return the sum of the minimum value at each index of arrays x and y for all indices.\n// i.e. sum = min(x_0, y_0) + min(x_1, y_1) + min(x_2, y_2) + ...\n// Use Chapel to sum in parallel. Example:\n//\n// input: x=[3, 4, 0, 2, 3], y=[2, 5, 3, 1, 7]\n// output: 10\n//\nproc sumOfMinimumElements(const x: [] real, const y: [] real): real {"
     }
 ]

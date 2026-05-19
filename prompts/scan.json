@@ -1,37 +1,37 @@
 [
     {
         "problem_type": "scan",
-        "language": "cpp",
+        "language": "chapel",
         "name": "30_scan_prefix_sum",
         "parallelism_model": "chapel",
-        "prompt": "/* Compute the prefix sum of the vector x into output.\n Use Chapel to compute in parallel. Example:\n \n input: [1, 7, 4, 6, 6, 2]\n output: [1, 8, 12, 18, 24, 26]\n*/\nvoid prefixSum(std::vector<double> const& x, std::vector<double> &output) {"
+        "prompt": "// Compute the prefix sum of the array x into output.\n// Use Chapel to compute in parallel. Example:\n// \n// input: [1, 7, 4, 6, 6, 2]\n// output: [1, 8, 12, 18, 24, 26]\n//\nproc prefixSum(const x: [] real, ref output: [] real) {"
     },
     {
         "problem_type": "scan",
-        "language": "cpp",
+        "language": "chapel",
         "name": "31_scan_scan_with_min_function",
         "parallelism_model": "chapel",
-        "prompt": "/* Replace the i-th element of the vector x with the minimum value from indices 0 through i.\n Use Chapel to compute in parallel. Examples:\n\n input: [8, 6, -1, 7, 3, 4, 4]\n output: [8, 6, -1, -1, -1, -1, -1]\n\n input: [5, 4, 6, 4, 3, 6, 1, 1]\n output: [5, 4, 4, 4, 3, 3, 1, 1]\n*/\nvoid partialMinimums(std::vector<float> &x) {"
+        "prompt": "// Replace the i-th element of the array x with the minimum value from indices 0 through i.\n// Use Chapel to compute in parallel. Examples:\n//\n// input: [8, 6, -1, 7, 3, 4, 4]\n// output: [8, 6, -1, -1, -1, -1, -1]\n//\n// input: [5, 4, 6, 4, 3, 6, 1, 1]\n// output: [5, 4, 4, 4, 3, 3, 1, 1]\n//\nproc partialMinimums(ref x: [] real) {"
     },
     {
         "problem_type": "scan",
-        "language": "cpp",
+        "language": "chapel",
         "name": "32_scan_sum_of_prefix_sum_array",
         "parallelism_model": "chapel",
-        "prompt": "/* Compute the prefix sum array of the vector x and return its sum.\n Use Chapel to compute in parallel. Example:\n\n input: [-7, 2, 1, 9, 4, 8]\n output: 15\n*/\ndouble sumOfPrefixSum(std::vector<double> const& x) {"
+        "prompt": "// Compute the prefix sum array of the array x and return its sum.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [-7, 2, 1, 9, 4, 8]\n// output: 15\n//\nproc sumOfPrefixSum(const x: [] real): real {"
     },
     {
         "problem_type": "scan",
-        "language": "cpp",
+        "language": "chapel",
         "name": "33_scan_reverse_prefix_sum",
         "parallelism_model": "chapel",
-        "prompt": "/* Compute the reverse prefix sum of the vector x into output.\n Use Chapel to compute in parallel. Examples:\n \n input: [1, 7, 4, 6, 6, 2]\n output: [2, 8, 14, 18, 25, 26]\n\n input: [3, 3, 7, 1, -2]\n output: [-2, -1, 6, 9, 12]\n*/\nvoid reversePrefixSum(std::vector<int> const& x, std::vector<int> &output) {"
+        "prompt": "// Compute the reverse prefix sum of the array x into output.\n// Use Chapel to compute in parallel. Examples:\n// \n// input: [1, 7, 4, 6, 6, 2]\n// output: [2, 8, 14, 18, 25, 26]\n//\n// input: [3, 3, 7, 1, -2]\n// output: [-2, -1, 6, 9, 12]\n//\nproc reversePrefixSum(const x: [] int, ref output: [] int) {"
     },
     {
         "problem_type": "scan",
-        "language": "cpp",
+        "language": "chapel",
         "name": "34_scan_largest_contiguous_subarray_sum",
         "parallelism_model": "chapel",
-        "prompt": "/* Return the largest sum of any contiguous subarray in the vector x.\n i.e. if x=[\u22122, 1, \u22123, 4, \u22121, 2, 1, \u22125, 4] then [4, \u22121, 2, 1] is the contiguous\n subarray with the largest sum of 6.\n Use Chapel to compute in parallel. Example:\n\n input: [\u22122, 1, \u22123, 4, \u22121, 2, 1, \u22125, 4]\n output: 6\n*/\nint maximumSubarray(std::vector<int> const& x) {"
+        "prompt": "// Return the largest sum of any contiguous subarray in the array x.\n// i.e. if x=[-2, 1, -3, 4, -1, 2, 1, -5, 4] then [4, -1, 2, 1] is the contiguous\n// subarray with the largest sum of 6.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]\n// output: 6\n//\nproc maximumSubarray(const x: [] int): int {"
     }
 ]

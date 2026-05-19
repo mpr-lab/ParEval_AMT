@@ -1,37 +1,37 @@
 [
     {
         "problem_type": "transform",
-        "language": "cpp",
+        "language": "chapel",
         "name": "55_transform_relu",
         "parallelism_model": "chapel",
-        "prompt": "/* Compute the ReLU function on every element of x. Elements less than zero become zero,\n while elements greater than zero stay the same.\n Use Chapel to compute in parallel. Example:\n\n input: [-1.8, 24.0, 1.2, 0.0, -5.1, -0.2, 4.5]\n output: [0, 24.0, 1.2, 0, 0, 0, 4.5]\n*/\nvoid relu(std::vector<double> &x) {"
+        "prompt": "// Compute the ReLU function on every element of x. Elements less than zero become zero,\n// while elements greater than zero stay the same.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [-1.8, 24.0, 1.2, 0.0, -5.1, -0.2, 4.5]\n// output: [0, 24.0, 1.2, 0, 0, 0, 4.5]\n//\nproc relu(ref x: [] real) {"
     },
     {
         "problem_type": "transform",
-        "language": "cpp",
+        "language": "chapel",
         "name": "56_transform_negate_odds",
         "parallelism_model": "chapel",
-        "prompt": "/* In the vector x negate the odd values and divide the even values by 2.\n Use Chapel to compute in parallel. Example:\n\n input: [16, 11, 12, 14, 1, 0, 5]\n output: [8, -11, 6, 7, -1, 0, -5]\n*/\nvoid negateOddsAndHalveEvens(std::vector<int> &x) {"
+        "prompt": "// In the array x negate the odd values and divide the even values by 2.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [16, 11, 12, 14, 1, 0, 5]\n// output: [8, -11, 6, 7, -1, 0, -5]\n//\nproc negateOddsAndHalveEvens(ref x: [] int) {"
     },
     {
         "problem_type": "transform",
-        "language": "cpp",
+        "language": "chapel",
         "name": "57_transform_inverse_offset",
         "parallelism_model": "chapel",
-        "prompt": "/* Replace every element of the vector x with 1-1/x.\n Use Chapel to compute in parallel. Example:\n\n input: [2, 4, 1, 12, -2]\n output: [0.5, 0.75, 0, 0.91666666, 1.5]\n*/\nvoid oneMinusInverse(std::vector<double> &x) {"
+        "prompt": "// Replace every element of the array x with 1-1/x.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [2, 4, 1, 12, -2]\n// output: [0.5, 0.75, 0, 0.91666666, 1.5]\n//\nproc oneMinusInverse(ref x: [] real) {"
     },
     {
         "problem_type": "transform",
-        "language": "cpp",
+        "language": "chapel",
         "name": "58_transform_squaring",
         "parallelism_model": "chapel",
-        "prompt": "/* Replace every element of x with the square of its value.\n Use Chapel to compute in parallel. Example:\n\n input: [5, 1, 2, -4, 8]\n output: [25, 1, 4, 16, 64]\n*/\nvoid squareEach(std::vector<int> &x) {"
+        "prompt": "// Replace every element of x with the square of its value.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [5, 1, 2, -4, 8]\n// output: [25, 1, 4, 16, 64]\n//\nproc squareEach(ref x: [] int) {"
     },
     {
         "problem_type": "transform",
-        "language": "cpp",
+        "language": "chapel",
         "name": "59_transform_map_function",
         "parallelism_model": "chapel",
-        "prompt": "bool isPowerOfTwo(int x) {\n\treturn (x > 0) && !(x & (x - 1));\n}\n\n/* Apply the isPowerOfTwo function to every value in x and store the results in mask.\n Use Chapel to compute in parallel. Example:\n\n input: [8, 0, 9, 7, 15, 64, 3]\n output: [true, false, false, false, false, true, false]\n*/\nvoid mapPowersOfTwo(std::vector<int> const& x, std::vector<bool> &mask) {"
+        "prompt": "proc isPowerOfTwo(x: int): bool {\n  return (x > 0) && ((x & (x - 1)) == 0);\n}\n\n// Apply the isPowerOfTwo function to every value in x and store the results in mask.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [8, 0, 9, 7, 15, 64, 3]\n// output: [true, false, false, false, false, true, false]\n//\nproc mapPowersOfTwo(const x: [] int, ref mask: [] bool) {"
     }
 ]

@@ -1,37 +1,38 @@
 [
     {
         "problem_type": "geometry",
-        "language": "cpp",
+        "language": "chapel",
         "name": "10_geometry_convex_hull",
         "parallelism_model": "chapel",
-        "prompt": "struct Point {\n double x, y;\n};\n\n/* Find the set of points that defined the smallest convex polygon that contains all the points in the vector points. Store the result in `hull`.\n Use Chapel to compute in parallel. Example:\n\n input: [{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}]\n output: [{0, 3}, {4, 4}, {3, 1}, {0, 0}]\n*/\nvoid convexHull(std::vector<Point> const& points, std::vector<Point> &hull) {"
+        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\n// Find the set of points that defined the smallest convex polygon that contains all the points in the array points. Store the result in hull.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}]\n// output: [{0, 3}, {4, 4}, {3, 1}, {0, 0}]\n//\nproc convexHull(const points: [] Point, ref hull: [] Point) {"
     },
     {
         "problem_type": "geometry",
-        "language": "cpp",
+        "language": "chapel",
         "name": "11_geometry_convex_hull_perimeter",
         "parallelism_model": "chapel",
-        "prompt": "struct Point {\n\tdouble x, y;\n};\n\ndouble distance(Point const& p1, Point const& p2) {\n\treturn std::sqrt(std::pow(p2.x-p1.x, 2) + std::pow(p2.y-p1.y, 2));\n}\n\n/* Return the perimeter of the smallest convex polygon that contains all the points in the vector points.\n Use Chapel to compute in parallel. Example:\n\n input: [{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}]\n output: 13.4477\n*/\ndouble convexHullPerimeter(std::vector<Point> const& points) {"
+        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\nproc distance(const p1: Point, const p2: Point): real {\n  return sqrt((p2.x-p1.x)**2 + (p2.y-p1.y)**2);\n}\n\n// Return the perimeter of the smallest convex polygon that contains all the points in the array points.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}]\n// output: 13.4477\n//\nproc convexHullPerimeter(const points: [] Point): real {"
     },
     {
         "problem_type": "geometry",
-        "language": "cpp",
+        "language": "chapel",
         "name": "12_geometry_smallest_triangle",
         "parallelism_model": "chapel",
-        "prompt": "struct Point {\n\tdouble x, y;\n};\n\ndouble triangleArea(Point const& A, Point const& B, Point const& C) {\n return 0.5 * std::abs( A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y) );\n}\n\n/* Return the area of the smallest triangle that can be formed by any 3 points.\n Use Chapel to compute in parallel. Example:\n\n input: [{0, 10}, {5, 5}, {1,0}, {-1, 1}, {-10, 0}]\n output: 5.5\n*/\ndouble smallestArea(std::vector<Point> const& points) {"
+        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\nproc triangleArea(const A: Point, const B: Point, const C: Point): real {\n  return 0.5 * abs(A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y));
+}\n\n// Return the area of the smallest triangle that can be formed by any 3 points.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [{0, 10}, {5, 5}, {1,0}, {-1, 1}, {-10, 0}]\n// output: 5.5\n//\nproc smallestArea(const points: [] Point): real {"
     },
     {
         "problem_type": "geometry",
-        "language": "cpp",
+        "language": "chapel",
         "name": "13_geometry_closest_pair_2d",
         "parallelism_model": "chapel",
-        "prompt": "struct Point {\n\tdouble x, y;\n};\n\ndouble distance(Point const& p1, Point const& p2) {\n\treturn std::sqrt(std::pow(p2.x-p1.x, 2) + std::pow(p2.y-p1.y, 2));\n}\n\n/* Return the distance between the closest two points in the vector points.\n Use Chapel to compute in parallel. Example: \n\n input: [{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}]\n output: 1.41421\n*/\ndouble closestPair(std::vector<Point> const& points) {"
+        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\nproc distance(const p1: Point, const p2: Point): real {\n  return sqrt((p2.x-p1.x)**2 + (p2.y-p1.y)**2);\n}\n\n// Return the distance between the closest two points in the array points.\n// Use Chapel to compute in parallel. Example: \n//\n// input: [{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}]\n// output: 1.41421\n//\nproc closestPair(const points: [] Point): real {"
     },
     {
         "problem_type": "geometry",
-        "language": "cpp",
+        "language": "chapel",
         "name": "14_geometry_closest_pair_1d",
         "parallelism_model": "chapel",
-        "prompt": "double distance(double x1, double x2) {\n\treturn std::abs(x1 - x2);\n}\n\n/* Return the distance between the closest two elements in the vector x.\n Use Chapel to compute in parallel. Example: \n\n input: [7, 3, 9, 12, 31, 1]\n output: 2\n*/\ndouble closestPair(std::vector<double> const& x) {"
+        "prompt": "proc distance(x1: real, x2: real): real {\n  return abs(x1 - x2);\n}\n\n// Return the distance between the closest two elements in the array x.\n// Use Chapel to compute in parallel. Example: \n//\n// input: [7, 3, 9, 12, 31, 1]\n// output: 2\n//\nproc closestPair(const x: [] real): real {"
     }
 ]
