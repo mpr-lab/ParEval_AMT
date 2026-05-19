@@ -23,7 +23,7 @@ declare -a models=("starcoder2-15b" "magicoder" )
 curr_model=${models[$SLURM_ARRAY_TASK_ID]}
 echo "Running model: $curr_model"
 
-BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_hpx/futures_promises"
+BASE_OUT="/work/pi_mrobson_smith_edu/scratch/generation_chapel/futures_promises"
 CACHE_FILE="${BASE_OUT}/cache/${curr_model}.json"
 OUT_FILE="${BASE_OUT}/cumulative_out.json"
 
