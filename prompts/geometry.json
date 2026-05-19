@@ -18,8 +18,7 @@
         "language": "chapel",
         "name": "12_geometry_smallest_triangle",
         "parallelism_model": "chapel",
-        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\nproc triangleArea(const A: Point, const B: Point, const C: Point): real {\n  return 0.5 * abs(A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y));
-}\n\n// Return the area of the smallest triangle that can be formed by any 3 points.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [{0, 10}, {5, 5}, {1,0}, {-1, 1}, {-10, 0}]\n// output: 5.5\n//\nproc smallestArea(const points: [] Point): real {"
+        "prompt": "record Point {\n  var x: real;\n  var y: real;\n}\n\nproc triangleArea(const A: Point, const B: Point, const C: Point): real {\n  return 0.5 * abs(A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y));\n}\n\n// Return the area of the smallest triangle that can be formed by any 3 points.\n// Use Chapel to compute in parallel. Example:\n//\n// input: [{0, 10}, {5, 5}, {1,0}, {-1, 1}, {-10, 0}]\n// output: 5.5\n//\nproc smallestArea(const points: [] Point): real {"
     },
     {
         "problem_type": "geometry",
