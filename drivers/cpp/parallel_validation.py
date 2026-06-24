@@ -77,3 +77,12 @@ class HPXValidator(Validator):
         #     print("HPX NAMESPACE FOUND")
         return self.must_contain(source, "hpx::") 
 
+
+class ChapelValidator(Validator):
+
+    def __init__(self):
+        super().__init__("chapel")
+
+    def validate(self, source: str) -> bool:
+        parallel_keywords = ["forall", "coforall", "cobegin", "begin ", "on Locales"]
+        return any(kw in source for kw in parallel_keywords)

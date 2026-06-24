@@ -11,7 +11,7 @@ from typing import List, Optional, Tuple
 import sys
 # local imports
 from util import all_equal, mean
-from cpp.parallel_validation import Validator, OMPValidator, MPIValidator, MPIandOMPValidator, EmptyValidator, HPXValidator
+from cpp.parallel_validation import Validator, OMPValidator, MPIValidator, MPIandOMPValidator, EmptyValidator, HPXValidator, ChapelValidator
 
 class BuildOutput:
     """ Represents the output of a single build. """
@@ -125,6 +125,7 @@ LANGUAGE_EXTENSIONS = {
     "c": ".c",
     "python": ".py",
     "fortran": ".f90",
+    "chapel": ".chpl",
 }
 
 """ MODEL TO DRIVER FILE BASENAME MAPPING """
@@ -136,7 +137,8 @@ DRIVER_MAP = {
     "kokkos": "kokkos",
     "cuda": "gpu",
     "hip": "gpu",
-    "hpx" : "hpx"
+    "hpx" : "hpx",
+    "chapel": "driver",
 }
 
 """ Validators """
@@ -148,7 +150,8 @@ VALIDATORS = {
     "kokkos": EmptyValidator(),
     "cuda": EmptyValidator(),
     "hip": EmptyValidator(),
-    "hpx" : HPXValidator()
+    "hpx" : HPXValidator(),
+    "chapel": ChapelValidator(),
 }
 
 class DriverWrapper(ABC):
