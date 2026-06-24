@@ -28,7 +28,7 @@ from pathlib import Path
 from typing import Iterable, Mapping, Any
 
 DEFAULT_SYSTEM = (
-    "You are an expert modern C++ developer specializing in high-performance HPX code. "
+    "You are an expert modern Python developer specializing in high-performance charm4py code. "
     "Provide concise, correct implementations."
 )
 
