@@ -6,7 +6,7 @@ from tqdm import tqdm
 from pathlib import Path
 # tpl imports
 import torch
-from transformers import GPT2LMHeadModel, GPT2Tokenizer, GPTNeoForCausalLM, AutoTokenizer, AutoModelForCausalLM, LlamaForCausalLM, pipeline, BitsAndBytesConfig
+from transformers import GPT2LMHeadModel, GPT2Tokenizer, GPTNeoForCausalLM, AutoTokenizer, AutoModelForCausalLM, AutoProcessor, LlamaForCausalLM, pipeline, BitsAndBytesConfig
 # local imports
 from utils import BalancedBracketsCriteria, PromptDataset, clean_output, get_inference_config
 from utils import GPUCPUMonitor
@@ -95,6 +95,11 @@ def load_model(model_name):
             model = AutoModelForCausalLM.from_pretrained('hpcgroup/hpc-coder-v2-6.7b', device_map="auto", dtype=torch.bfloat16)
             tokenizer = AutoTokenizer.from_pretrained('hpcgroup/hpc-coder-v2-6.7b')
             
+        elif model_name == 'gemma-4-31b':
+            processor = AutoProcessor.from_pretrained('google/gemma-4-31B-it')
+            model = AutoModelForCausalLM.from_pretrained('google/gemma-4-31B-it', dtype="auto", device_map="auto")
+            processor.is_gemma = True
+            return model, processor
         elif model_name == 'glm-4.7-flash':
             model = AutoModelForCausalLM.from_pretrained('zai-org/GLM-4.7-Flash', device_map="auto" )
             tokenizer = AutoTokenizer.from_pretrained( 'zai-org/GLM-4.7-Flash'   )
@@ -355,6 +360,27 @@ def generate_minimax_batch(prompt_text, batch_size):
 
 
         
+def generate_code_gemma(model, processor, prompt):
+    HPC_SYSTEM_PROMPT = "You are an expert in high-performance computing and parallel programming. Generate efficient code for the requested function, without helper functions. Focus on performance optimization and correctness."
+    messages = [
+        {"role": "system", "content": HPC_SYSTEM_PROMPT},
+        {"role": "user", "content": prompt},
+    ]
+    text = processor.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
+    )
+    inputs = processor(text=text, return_tensors="pt").to(model.device)
+    input_len = inputs["input_ids"].shape[-1]
+    outputs = model.generate(
+        **inputs,
+        max_new_tokens=args.max_new_tokens,
+        temperature=args.temperature,
+        top_p=args.top_p,
+        do_sample=args.do_sample,
+    )
+    response = processor.decode(outputs[0][input_len:], skip_special_tokens=False)
+    return processor.parse_response(response)
+
 def generate_code_with_generator(generator, prompt):
     PROMPT = """You are an exceptionally intelligent coding assistant that generates high-performance computing code. Generate efficient code for the requested function, without helper functions.
         
@@ -414,6 +440,8 @@ def generate_code_chat(model, tokenizer, prompt):
     return generated_code
 
 def generate_code(model, tokenizer, prompt):
+    if hasattr(tokenizer, 'is_gemma') and tokenizer.is_gemma:
+        return generate_code_gemma(model, tokenizer, prompt)
     #glm flash
     if hasattr(tokenizer, 'is_chat_model') and tokenizer.is_chat_model:
         return generate_code_chat(model, tokenizer, prompt)
