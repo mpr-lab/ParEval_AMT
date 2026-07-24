@@ -464,6 +464,12 @@ for model_name in args.model_names:
     #if gpu, put model to gpu
     #for pipeline, model is actually the encased generator, and tokenizer is True
     model, tokenizer = load_model(model_name)
+
+    # https://chat.smithcollege.ai/share/dxNU14WcyO7wbZIfPRxBl
+    if model is None or tokenizer is None:
+        print(f"ERROR: Failed to load model or tokenizer for '{model_name}'. Skipping.")
+        continue
+
     print("Loaded model", model_name)
     #minimax has separate handler to store thinking
     is_minimax = (model_name == "minimax")
