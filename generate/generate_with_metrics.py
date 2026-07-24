@@ -96,8 +96,9 @@ def load_model(model_name):
             tokenizer = AutoTokenizer.from_pretrained('hpcgroup/hpc-coder-v2-6.7b')
             
         elif model_name == 'gemma-4-31b':
-            processor = AutoProcessor.from_pretrained('google/gemma-4-31B-it')
-            model = AutoModelForCausalLM.from_pretrained('google/gemma-4-31B-it', dtype="auto", device_map="auto")
+            model_path = '/datasets/ai/gemma/hub/models--google--gemma-4-31B-it/snapshots/ba74f5b6c647c0911554e50278d6f6f4477f9010'
+            processor = AutoProcessor.from_pretrained(model_path)
+            model = AutoModelForCausalLM.from_pretrained(model_path, dtype="auto", device_map="auto")
             processor.is_gemma = True
             return model, processor
         elif model_name == 'glm-4.7-flash':
