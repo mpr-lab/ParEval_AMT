@@ -138,7 +138,7 @@ DRIVER_MAP = {
     "cuda": "gpu",
     "hip": "gpu",
     "hpx" : "hpx",
-    "charm4py": "charm4py",
+    "charm4py": "driver",
 }
 
 """ Validators """

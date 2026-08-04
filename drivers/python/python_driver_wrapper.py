@@ -16,8 +16,8 @@ from drivers.driver_wrapper import DriverWrapper, BuildOutput, RunOutput, Genera
 from util import run_command
 
 DRIVER_MAP = {
-    "charm4py": "charm4py.py",
-    "serial": "serial.py",
+    "charm4py": "driver.py",
+    "serial": "driver.py",
 }
 
 LAUNCH_FORMAT = {
