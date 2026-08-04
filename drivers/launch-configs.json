@@ -76,5 +76,14 @@
     "hip": {
         "format": "{exec_path} {args}",
         "params": [{}]
+    },
+    "charm4py": {
+        "format": "charmrun +p{num_pes} python {driver_path} --generated {generated_path} {args}",
+        "params": [
+            {"num_pes": 1},
+            {"num_pes": 2},
+            {"num_pes": 4},
+            {"num_pes": 8}
+        ]
     }
 }

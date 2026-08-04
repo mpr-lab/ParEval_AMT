@@ -12,6 +12,7 @@ import sys
 # local imports
 from util import all_equal, mean
 from cpp.parallel_validation import Validator, OMPValidator, MPIValidator, MPIandOMPValidator, EmptyValidator, HPXValidator
+from python.parallel_validation import Charm4PyValidator, PythonSerialValidator
 
 class BuildOutput:
     """ Represents the output of a single build. """
@@ -136,7 +137,8 @@ DRIVER_MAP = {
     "kokkos": "kokkos",
     "cuda": "gpu",
     "hip": "gpu",
-    "hpx" : "hpx"
+    "hpx" : "hpx",
+    "charm4py": "charm4py",
 }
 
 """ Validators """
@@ -148,7 +150,8 @@ VALIDATORS = {
     "kokkos": EmptyValidator(),
     "cuda": EmptyValidator(),
     "hip": EmptyValidator(),
-    "hpx" : HPXValidator()
+    "hpx" : HPXValidator(),
+    "charm4py": Charm4PyValidator(),
 }
 
 class DriverWrapper(ABC):
