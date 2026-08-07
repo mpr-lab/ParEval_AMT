@@ -7,6 +7,8 @@ import copy
 import logging
 import os
 from os import PathLike
+from pathlib import Path
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -112,13 +114,13 @@ class PythonDriverWrapper(DriverWrapper):
             configs = self.launch_configs.get("params", [{}])
             run_results = []
 
-            abs_driver = os.path.abspath(test_driver_file)
+            abs_driver = self._resolve_driver_path(test_driver_file, problem_type)
             fmt = self.launch_configs.get("format", "python {driver_path} --generated {generated_path}")
 
             for c in configs:
                 cmd = fmt.format(
-                    driver_path=abs_driver,
-                    generated_path=generated_path,
+                    driver_path=shlex.quote(abs_driver),
+                    generated_path=shlex.quote(generated_path),
                     args="",
                     **c,
                 )
@@ -131,3 +133,44 @@ class PythonDriverWrapper(DriverWrapper):
                     break
 
         return GeneratedTextResult(write_success, build_result, run_results)
+
+    def _resolve_driver_path(self, test_driver_file: PathLike, problem_type: str) -> str:
+        """Resolve driver file path and recover from malformed relative inputs.
+
+        Some datasets may contain stray whitespace in metadata, which can leak into
+        relative paths and break process argument tokenization. This resolver strips
+        surrounding whitespace and validates that we end at a concrete driver file.
+        """
+        raw = str(test_driver_file).strip()
+        candidate = Path(raw)
+        if not candidate.is_absolute():
+            candidate = Path(os.getcwd()) / candidate
+        candidate = candidate.resolve()
+        if candidate.is_file():
+            return str(candidate)
+
+        # If caller accidentally passed a directory, try the expected filename.
+        if candidate.is_dir():
+            dir_candidate = (candidate / self.driver_filename).resolve()
+            if dir_candidate.is_file():
+                return str(dir_candidate)
+
+        # Fallback: reconstruct from normalized python benchmark layout.
+        cleaned_parts = [p for p in raw.replace("\r", "").replace("\n", "").split("/") if p]
+        expected_problem = cleaned_parts[-2] if len(cleaned_parts) >= 2 else None
+        if expected_problem:
+            recovered = (
+                Path(os.getcwd())
+                / "python"
+                / "benchmarks"
+                / str(problem_type).strip()
+                / expected_problem
+                / self.driver_filename
+            ).resolve()
+            if recovered.is_file():
+                return str(recovered)
+
+        raise FileNotFoundError(
+            f"Could not resolve python benchmark driver file from '{test_driver_file}'. "
+            f"Resolved candidate was '{candidate}'."
+        )

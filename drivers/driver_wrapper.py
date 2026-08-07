@@ -221,10 +221,11 @@ class DriverWrapper(ABC):
 
     def test_all_outputs_in_prompt(self, prompt: dict) -> dict:
         """ Run all the generated outputs in the given prompt. """
-        lang = prompt["language"]
-        type = prompt["problem_type"]
-        name = prompt["name"]
-        ext = LANGUAGE_EXTENSIONS[prompt["language"]]
+        # Normalize prompt metadata to avoid path/token issues from stray whitespace.
+        lang = prompt["language"].strip()
+        type = prompt["problem_type"].strip()
+        name = prompt["name"].strip()
+        ext = LANGUAGE_EXTENSIONS[lang]
         if lang == "cpp" and self.parallelism_model in ["cuda", "hip"]:
             ext = ".cu"
         elif lang == "hpx":

@@ -75,8 +75,10 @@ def get_driver(
     **kwargs
 ) -> DriverWrapper:
     """ Get the language drive wrapper for this prompt """
-    driver_cls = LANGUAGE_DRIVERS[prompt["language"]]
-    return driver_cls(parallelism_model=prompt["parallelism_model"], launch_configs=launch_configs, 
+    language = prompt["language"].strip()
+    parallelism_model = prompt["parallelism_model"].strip()
+    driver_cls = LANGUAGE_DRIVERS[language]
+    return driver_cls(parallelism_model=parallelism_model, launch_configs=launch_configs, 
         build_configs=build_configs, problem_sizes=problem_sizes, scratch_dir=scratch_dir, dry=dry, **kwargs)
 
 def already_has_results(prompt: dict) -> bool:
@@ -167,6 +169,13 @@ def main():
     # run each prompt
     all_prompts = data if args.hide_progress else tqdm(data, desc="Testing prompts")
     for prompt in all_prompts:
+        # Normalize metadata in-place so downstream path/model logic is robust
+        # to accidental whitespace in serialized prompt files.
+        prompt["name"] = prompt["name"].strip()
+        prompt["problem_type"] = prompt["problem_type"].strip()
+        prompt["language"] = prompt["language"].strip()
+        prompt["parallelism_model"] = prompt["parallelism_model"].strip()
+
         prompt_key = prompt.get("name")
         if prompt_key in existing_prompt_keys:
             logging.debug(f"Skipping prompt {prompt['name']} because it already has results. Skipping.")
