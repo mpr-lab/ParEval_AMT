@@ -83,7 +83,10 @@
             {"num_pes": 1},
             {"num_pes": 2},
             {"num_pes": 4},
-            {"num_pes": 8}
+            {"num_pes": 8},
+            {"num_pes": 16},
+            {"num_pes": 32},
+            {"num_pes": 64}
         ]
     }
 }
