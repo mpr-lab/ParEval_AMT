@@ -23,7 +23,7 @@ DRIVER_MAP = {
 }
 
 LAUNCH_FORMAT = {
-    "charm4py": "charmrun +p{num_pes} python {driver_path} --generated {generated_path}",
+    "charm4py": "charmrun +p{num_pes} {driver_path} --generated {generated_path}",
     "serial": "python {driver_path} --generated {generated_path}",
 }
 
@@ -75,7 +75,7 @@ class PythonDriverWrapper(DriverWrapper):
         """Run the benchmark driver subprocess.
 
         `executable` here is the full shell command string built by
-        test_single_output (e.g. 'charmrun +p4 python .../charm4py.py --generated ...').
+        test_single_output (e.g. 'charmrun +p4 .../charm4py.py --generated ...').
         """
         try:
             run_process = run_command(executable, timeout=self.run_timeout, dry=self.dry)
@@ -115,7 +115,7 @@ class PythonDriverWrapper(DriverWrapper):
             run_results = []
 
             abs_driver = self._resolve_driver_path(test_driver_file, problem_type)
-            fmt = self.launch_configs.get("format", "python {driver_path} --generated {generated_path}")
+            fmt = self.launch_configs.get("format", "{driver_path} --generated {generated_path}")
 
             for c in configs:
                 cmd = fmt.format(
