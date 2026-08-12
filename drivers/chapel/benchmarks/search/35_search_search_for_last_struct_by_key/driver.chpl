@@ -15,7 +15,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var books: [0..<n] Book;
     var rs = new randomStream(int, seed=trial+1);
-    for i in 0..<n { books[i].title = "Book"; books[i].pages = ((rs.getNext() % 200) + 200) % 200; }
+    for i in 0..<n { books[i].title = "Book"; books[i].pages = ((rs.rand() % 200) + 200) % 200; }
     if correctFindLastShortBook(books) != findLastShortBook(books) then return false;
   }
   return true;
@@ -25,7 +25,7 @@ proc main() {
   const n = problemSize;
   var books: [0..<n] Book;
   var rs = new randomStream(int, seed=42);
-  for i in 0..<n { books[i].title = "Book"; books[i].pages = ((rs.getNext() % 200) + 200) % 200; }
+  for i in 0..<n { books[i].title = "Book"; books[i].pages = ((rs.rand() % 200) + 200) % 200; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

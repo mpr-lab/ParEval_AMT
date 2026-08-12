@@ -22,7 +22,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var res: [0..<n] Result;
     var rs = new randomStream(int, seed=trial+1);
-    for i in 0..<n { res[i].startTime = rs.getNext() % 10000; res[i].duration = rs.getNext() % 100; res[i].value = 1.0; }
+    for i in 0..<n { res[i].startTime = rs.rand() % 10000; res[i].duration = rs.rand() % 100; res[i].value = 1.0; }
     var rref = res; var rgen = res;
     correctSortByStartTime(rref); sortByStartTime(rgen);
     for i in 0..<n { if rref[i].startTime != rgen[i].startTime then return false; }
@@ -34,7 +34,7 @@ proc main() {
   const n = problemSize;
   var results: [0..<n] Result;
   var rs = new randomStream(int, seed=42);
-  for i in 0..<n { results[i].startTime = rs.getNext() % 1000000; results[i].duration = rs.getNext() % 1000; results[i].value = 1.0; }
+  for i in 0..<n { results[i].startTime = rs.rand() % 1000000; results[i].duration = rs.rand() % 1000; results[i].value = 1.0; }
   const orig = results;
 
   const isValid = doValidate();

@@ -19,7 +19,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { var v = rs.getNext() % 201 - 100; x[i] = if v == 0 then 1 else v; }
+    for i in x.domain { var v = rs.rand() % 201 - 100; x[i] = if v == 0 then 1 else v; }
     for i in 0..<n/5 { x[i*5] = 0; }
     var xref = x; var xgen = x;
     correctSortIgnoreZero(xref); sortIgnoreZero(xgen);
@@ -32,7 +32,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { var v = rs.getNext() % 201 - 100; x[i] = if v == 0 then 1 else v; }
+  for i in x.domain { var v = rs.rand() % 201 - 100; x[i] = if v == 0 then 1 else v; }
   for i in 0..<n/5 { x[i*5] = 0; }
   const orig = x;
 

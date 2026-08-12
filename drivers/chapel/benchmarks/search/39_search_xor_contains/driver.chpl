@@ -13,8 +13,8 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int; var y: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { x[i] = rs.getNext() % 100; }
-    for i in y.domain { y[i] = rs.getNext() % 100; }
+    for i in x.domain { x[i] = rs.rand() % 100; }
+    for i in y.domain { y[i] = rs.rand() % 100; }
     const val = 42;
     if correctXorContains(x, y, val) != xorContains(x, y, val) then return false;
   }
@@ -25,8 +25,8 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int; var y: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { x[i] = rs.getNext() % 100; }
-  for i in y.domain { y[i] = rs.getNext() % 100; }
+  for i in x.domain { x[i] = rs.rand() % 100; }
+  for i in y.domain { y[i] = rs.rand() % 100; }
   const val = 42;
 
   const isValid = doValidate();

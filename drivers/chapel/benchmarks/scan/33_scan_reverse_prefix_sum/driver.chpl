@@ -13,7 +13,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int; var oref: [0..<n] int; var ogen: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { x[i] = rs.getNext() % 100; }
+    for i in x.domain { x[i] = rs.rand() % 100; }
     correctReversePrefixSum(x, oref); reversePrefixSum(x, ogen);
     for i in 0..<n { if oref[i] != ogen[i] then return false; }
   }
@@ -24,7 +24,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int; var output: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { x[i] = rs.getNext() % 100; }
+  for i in x.domain { x[i] = rs.rand() % 100; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

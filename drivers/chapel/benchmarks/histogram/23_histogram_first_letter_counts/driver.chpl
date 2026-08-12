@@ -12,7 +12,7 @@ proc correctFirstLetterCounts(s: [] string, ref bins: [] int) {
 
 proc makeStrings(ref s: [] string, rs: randomStream(int)) {
   for i in s.domain {
-    var idx = ((rs.getNext() % 26) + 26) % 26;
+    var idx = ((rs.rand() % 26) + 26) % 26;
     s[i] = ALPHA[idx];
   }
 }

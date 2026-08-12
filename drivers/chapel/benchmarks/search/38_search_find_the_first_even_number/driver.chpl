@@ -12,7 +12,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { x[i] = rs.getNext() % 1000; }
+    for i in x.domain { x[i] = rs.rand() % 1000; }
     if correctFindFirstEven(x) != findFirstEven(x) then return false;
   }
   return true;
@@ -22,7 +22,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { x[i] = rs.getNext() % 1000; }
+  for i in x.domain { x[i] = rs.rand() % 1000; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

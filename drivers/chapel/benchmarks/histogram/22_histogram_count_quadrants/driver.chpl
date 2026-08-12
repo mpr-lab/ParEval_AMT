@@ -16,7 +16,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var pts: [0..<n] Point;
     var rs = new randomStream(real, seed=trial+1);
-    for i in 0..<n { pts[i].x = rs.getNext() * 2.0 - 1.0; pts[i].y = rs.getNext() * 2.0 - 1.0; }
+    for i in 0..<n { pts[i].x = rs.rand() * 2.0 - 1.0; pts[i].y = rs.rand() * 2.0 - 1.0; }
     var bref: [0..<4] int = 0; var bgen: [0..<4] int = 0;
     correctCountQuadrants(pts, bref); countQuadrants(pts, bgen);
     for i in 0..<4 { if bref[i] != bgen[i] then return false; }
@@ -28,7 +28,7 @@ proc main() {
   const n = problemSize;
   var pts: [0..<n] Point; var bins: [0..<4] int = 0;
   var rs = new randomStream(real, seed=42);
-  for i in 0..<n { pts[i].x = rs.getNext() * 2.0 - 1.0; pts[i].y = rs.getNext() * 2.0 - 1.0; }
+  for i in 0..<n { pts[i].x = rs.rand() * 2.0 - 1.0; pts[i].y = rs.rand() * 2.0 - 1.0; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");
