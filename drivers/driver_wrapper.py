@@ -143,7 +143,8 @@ DRIVER_MAP = {
     "kokkos": "kokkos",
     "cuda": "gpu",
     "hip": "gpu",
-    "hpx" : "hpx"
+    "hpx" : "hpx",
+    "chapel": "cpu"
 }
 
 """ Validators """
