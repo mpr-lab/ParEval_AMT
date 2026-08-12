@@ -257,7 +257,8 @@
     "kokkos": "(1<<23)",
     "cuda": "(1<<24)",
     "hip": "(1<<24)",
-    "hpx" : "(1<<24)"
+    "hpx": "(1<<24)",
+    "chapel": "(1<<24)"
   },
   "26_reduce_product_of_inverses": {
     "serial": "(1<<23)",

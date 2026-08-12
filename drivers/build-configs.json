@@ -7,6 +7,6 @@
     "cuda": {"CXX": "nvcc", "CXXFLAGS": "-std=c++17 --generate-code arch=compute_80,code=sm_80 -O3 -Xcompiler \"-std=c++17 -O3\""},
     "hip": {"CXX": "hipcc", "CXXFLAGS": "-std=c++17 -O3 -Xcompiler \"-std=c++17\" -Xcompiler \"-O3\" -Wno-unused-result"},
     "hpx": {"CXX": "c++", "CXXFLAGS": "-O3  `pkg-config --cflags --libs hpx_application` -lhpx_iostreams -Icpp  -Icpp/models  -w"},
-    "hpx_new" : {"CXX": "c++", "CXXFLAGS": "-O3  `pkg-config --cflags --libs hpx_application` -lhpx_iostreams -Icpp  -Icpp/models  -w"
-}
+    "hpx_new" : {"CXX": "c++", "CXXFLAGS": "-O3  `pkg-config --cflags --libs hpx_application` -lhpx_iostreams -Icpp  -Icpp/models  -w"},
+    "chapel": {"CHPL": "chpl", "CHPLFLAGS": "--fast"}
 }

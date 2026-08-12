@@ -22,6 +22,7 @@ DRIVER_MAP = {
     "omp": "omp-driver.chpl",
     "mpi": "mpi-driver.chpl",
     "mpi+omp": "mpi-omp-driver.chpl",
+    "chapel": "serial-driver.chpl",
 }
 
 """ Compiler settings for Chapel """
@@ -30,6 +31,7 @@ COMPILER_SETTINGS = {
     "omp": {"CHPL": "chpl", "CHPLFLAGS": "--fast"},
     "mpi": {"CHPL": "chpl", "CHPLFLAGS": "--fast"},
     "mpi+omp": {"CHPL": "chpl", "CHPLFLAGS": "--fast"},
+    "chapel": {"CHPL": "chpl", "CHPLFLAGS": "--fast"},
 }
 
 """ Chapel parallel validation """
@@ -40,6 +42,7 @@ CHAPEL_VALIDATORS = {
     "omp": ChapelOMPValidator(),
     "mpi": ChapelMPIValidator(),
     "mpi+omp": ChapelMPIandOMPValidator(),
+    "chapel": ChapelEmptyValidator(),
 }
 
 class ChapelDriverWrapper(DriverWrapper):

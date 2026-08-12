@@ -76,5 +76,9 @@
     "hip": {
         "format": "{exec_path} {args}",
         "params": [{}]
+    },
+    "chapel": {
+        "format": "{exec_path} {args}",
+        "params": [{}]
     }
 }
