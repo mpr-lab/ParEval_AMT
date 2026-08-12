@@ -22,7 +22,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<testN] complex(128);
     var rs = new randomStream(real, seed=trial+1);
-    for i in 0..<testN { x[i].re = rs.rand(); x[i].im = rs.rand(); }
+    for i in 0..<testN { x[i].re = rs.next(); x[i].im = rs.next(); }
     var xref = x; var xgen = x;
     correctIfft(xref); ifft(xgen);
     for i in 0..<testN {
@@ -37,7 +37,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] complex(128);
   var rs = new randomStream(real, seed=42);
-  for i in 0..<n { x[i].re = rs.rand(); x[i].im = rs.rand(); }
+  for i in 0..<n { x[i].re = rs.next(); x[i].im = rs.next(); }
   const xorig = x;
 
   const isValid = doValidate();

@@ -11,7 +11,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { x[i] = rs.rand() % 10000; }
+    for i in x.domain { x[i] = rs.next() % 10000; }
     const k = n/2;
     if correctFindKthSmallest(x, k) != findKthSmallest(x, k) then return false;
   }
@@ -22,7 +22,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { x[i] = rs.rand() % 1000000; }
+  for i in x.domain { x[i] = rs.next() % 1000000; }
   const k = n/2;
 
   const isValid = doValidate();

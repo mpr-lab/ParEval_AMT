@@ -12,7 +12,7 @@ proc makeGraph(ref A: [] int, N: int, rs: randomStream(int)) {
   A = 0;
   for i in 0..<N {
     for j in i+1..<N {
-      if rs.rand() % 3 == 0 { A[i*N+j] = 1; A[j*N+i] = 1; }
+      if rs.next() % 3 == 0 { A[i*N+j] = 1; A[j*N+i] = 1; }
     }
   }
 }

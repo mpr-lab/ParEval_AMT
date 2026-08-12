@@ -20,7 +20,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<testN] complex(128);
     var rs = new randomStream(real, seed=trial+1);
-    for idx in 0..<testN { x[idx].re = rs.rand(); x[idx].im = rs.rand(); }
+    for idx in 0..<testN { x[idx].re = rs.next(); x[idx].im = rs.next(); }
     var rref: [0..<testN] real; var iref: [0..<testN] real;
     var rgen: [0..<testN] real; var igen: [0..<testN] real;
     correctFftSplit(x, rref, iref);
@@ -38,7 +38,7 @@ proc main() {
   var x: [0..<n] complex(128);
   var r: [0..<n] real; var im: [0..<n] real;
   var rs = new randomStream(real, seed=42);
-  for idx in 0..<n { x[idx].re = rs.rand(); x[idx].im = rs.rand(); }
+  for idx in 0..<n { x[idx].re = rs.next(); x[idx].im = rs.next(); }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

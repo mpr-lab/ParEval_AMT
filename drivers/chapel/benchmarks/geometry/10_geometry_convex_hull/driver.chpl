@@ -41,7 +41,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var pts: [0..<testN] Point;
     var rs = new randomStream(real, seed=trial+1);
-    for i in 0..<testN { pts[i].x = rs.rand() + 0.1; pts[i].y = rs.rand() + 0.1; }
+    for i in 0..<testN { pts[i].x = rs.next() + 0.1; pts[i].y = rs.next() + 0.1; }
     var hullRef: [0..<testN] Point; var hullGen: [0..<testN] Point;
     jarvis(pts, hullRef); convexHull(pts, hullGen);
     if abs(hullPerim(hullRef) - hullPerim(hullGen)) > 1e-9 then return false;
@@ -53,7 +53,7 @@ proc main() {
   const n = problemSize;
   var pts: [0..<n] Point;
   var rs = new randomStream(real, seed=42);
-  for i in 0..<n { pts[i].x = rs.rand(); pts[i].y = rs.rand(); }
+  for i in 0..<n { pts[i].x = rs.next(); pts[i].y = rs.next(); }
   var hull: [0..<n] Point;
 
   const isValid = doValidate();

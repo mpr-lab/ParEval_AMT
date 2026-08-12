@@ -22,7 +22,7 @@ proc correctShortestPathLength(A: [] int, N: int, source: int, dest: int): int {
 proc makeConnectedGraph(ref A: [] int, N: int, rs: randomStream(int)) {
   A = 0;
   for i in 0..<N-1 { A[i*N+(i+1)] = 1; A[(i+1)*N+i] = 1; }
-  for i in 0..<N { for j in i+2..<N { if rs.rand() % 4 == 0 { A[i*N+j] = 1; A[j*N+i] = 1; } } }
+  for i in 0..<N { for j in i+2..<N { if rs.next() % 4 == 0 { A[i*N+j] = 1; A[j*N+i] = 1; } } }
 }
 
 proc doValidate(): bool {

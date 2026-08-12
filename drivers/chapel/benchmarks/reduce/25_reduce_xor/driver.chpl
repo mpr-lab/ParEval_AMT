@@ -13,7 +13,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var a: [0..<n] bool;
     var rs = new randomStream(int, seed=trial+1);
-    for i in a.domain do a[i] = (rs.rand() % 2) == 1;
+    for i in a.domain do a[i] = (rs.next() % 2) == 1;
     if correctReduceLogicalXOR(a) != reduceLogicalXOR(a) then return false;
   }
   return true;
@@ -22,7 +22,7 @@ proc doValidate(): bool {
 proc main() {
   var x: [0..<problemSize] bool;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain do x[i] = (rs.rand() % 2) == 1;
+  for i in x.domain do x[i] = (rs.next() % 2) == 1;
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

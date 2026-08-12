@@ -15,8 +15,8 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<nnz] Element; var y: [0..<nnz] Element;
     var rs = new randomStream(real, seed=trial+1);
-    for i in x.domain { x[i].index = (rs.rand()*n):int % n; x[i].value = rs.rand()*2-1; }
-    for i in y.domain { y[i].index = (rs.rand()*n):int % n; y[i].value = rs.rand()*2-1; }
+    for i in x.domain { x[i].index = (rs.next()*n):int % n; x[i].value = rs.next()*2-1; }
+    for i in y.domain { y[i].index = (rs.next()*n):int % n; y[i].value = rs.next()*2-1; }
     var zc, zt: [0..<n] real;
     correctSparseAxpy(2.0, x, y, zc);
     sparseAxpy(2.0, x, y, zt);
@@ -29,8 +29,8 @@ proc main() {
   const n = problemSize; const nnz = problemSize / 10;
   var x: [0..<nnz] Element; var y: [0..<nnz] Element; var z: [0..<n] real;
   var rs = new randomStream(real, seed=42);
-  for i in x.domain { x[i].index = (rs.rand()*n):int % n; x[i].value = rs.rand()*2-1; }
-  for i in y.domain { y[i].index = (rs.rand()*n):int % n; y[i].value = rs.rand()*2-1; }
+  for i in x.domain { x[i].index = (rs.next()*n):int % n; x[i].value = rs.next()*2-1; }
+  for i in y.domain { y[i].index = (rs.next()*n):int % n; y[i].value = rs.next()*2-1; }
   const alpha = 2.0;
 
   const isValid = doValidate();

@@ -11,7 +11,7 @@ proc doValidate(): bool {
   const n = 1024;
   for trial in 0..1 {
     var d: [0..<n] uint(8); var rs = new randomStream(int, seed=trial+1);
-    for i in d.domain do d[i] = (abs(rs.rand()) % 256):uint(8);
+    for i in d.domain do d[i] = (abs(rs.next()) % 256):uint(8);
     var bc, bt: [0..<256] int;
     correctParallelHistogramBytes(d, bc); parallelHistogramBytes(d, bt);
     for i in bc.domain do if bc[i] != bt[i] then return false;
@@ -21,7 +21,7 @@ proc doValidate(): bool {
 
 proc main() {
   var data: [0..<problemSize] uint(8); var rs = new randomStream(int, seed=42);
-  for i in data.domain do data[i] = (abs(rs.rand()) % 256):uint(8);
+  for i in data.domain do data[i] = (abs(rs.next()) % 256):uint(8);
   var bins: [0..<256] int;
 
   const isValid = doValidate();

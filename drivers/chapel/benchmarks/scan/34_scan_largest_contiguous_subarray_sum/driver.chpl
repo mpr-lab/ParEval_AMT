@@ -16,7 +16,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var x: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in x.domain { x[i] = (rs.rand() % 201) - 100; }
+    for i in x.domain { x[i] = (rs.next() % 201) - 100; }
     if correctMaximumSubarray(x) != maximumSubarray(x) then return false;
   }
   return true;
@@ -26,7 +26,7 @@ proc main() {
   const n = problemSize;
   var x: [0..<n] int;
   var rs = new randomStream(int, seed=42);
-  for i in x.domain { x[i] = (rs.rand() % 201) - 100; }
+  for i in x.domain { x[i] = (rs.next() % 201) - 100; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

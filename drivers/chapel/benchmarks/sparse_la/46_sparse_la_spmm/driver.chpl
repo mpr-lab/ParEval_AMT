@@ -16,8 +16,8 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var A: [0..<nnz] COOElement; var X: [0..<nnz] COOElement;
     var rs = new randomStream(real, seed=trial+1);
-    for i in A.domain { A[i].row=(rs.rand()*m):int%m; A[i].col=(rs.rand()*k):int%k; A[i].value=rs.rand()*2-1; }
-    for i in X.domain { X[i].row=(rs.rand()*k):int%k; X[i].col=(rs.rand()*n):int%n; X[i].value=rs.rand()*2-1; }
+    for i in A.domain { A[i].row=(rs.next()*m):int%m; A[i].col=(rs.next()*k):int%k; A[i].value=rs.next()*2-1; }
+    for i in X.domain { X[i].row=(rs.next()*k):int%k; X[i].col=(rs.next()*n):int%n; X[i].value=rs.next()*2-1; }
     var Yc, Yt: [0..<m*n] real;
     correctSpmm(A, X, Yc, m, k, n);
     spmm(A, X, Yt, m, k, n);
@@ -31,8 +31,8 @@ proc main() {
   const nnz = M * K / 5;
   var A: [0..<nnz] COOElement; var X: [0..<nnz] COOElement; var Y: [0..<M*N] real;
   var rs = new randomStream(real, seed=42);
-  for i in A.domain { A[i].row=(rs.rand()*M):int%M; A[i].col=(rs.rand()*K):int%K; A[i].value=rs.rand()*2-1; }
-  for i in X.domain { X[i].row=(rs.rand()*K):int%K; X[i].col=(rs.rand()*N):int%N; X[i].value=rs.rand()*2-1; }
+  for i in A.domain { A[i].row=(rs.next()*M):int%M; A[i].col=(rs.next()*K):int%K; A[i].value=rs.next()*2-1; }
+  for i in X.domain { X[i].row=(rs.next()*K):int%K; X[i].col=(rs.next()*N):int%N; X[i].value=rs.next()*2-1; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

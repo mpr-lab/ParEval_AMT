@@ -11,7 +11,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var image: [0..<n] int;
     var rs = new randomStream(int, seed=trial+1);
-    for i in image.domain { image[i] = ((rs.rand() % 256) + 256) % 256; }
+    for i in image.domain { image[i] = ((rs.next() % 256) + 256) % 256; }
     var bref: [0..<256] int = 0; var bgen: [0..<256] int = 0;
     correctPixelCounts(image, bref); pixelCounts(image, bgen);
     for i in 0..<256 { if bref[i] != bgen[i] then return false; }
@@ -24,7 +24,7 @@ proc main() {
   var image: [0..<n] int;
   var bins: [0..<256] int = 0;
   var rs = new randomStream(int, seed=42);
-  for i in image.domain { image[i] = ((rs.rand() % 256) + 256) % 256; }
+  for i in image.domain { image[i] = ((rs.next() % 256) + 256) % 256; }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");

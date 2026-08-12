@@ -22,7 +22,7 @@ proc doValidate(): bool {
   for trial in 0..1 {
     var pts: [0..<testN] Point;
     var rs = new randomStream(real, seed=trial+1);
-    for i in 0..<testN { pts[i].x = rs.rand(); pts[i].y = rs.rand(); }
+    for i in 0..<testN { pts[i].x = rs.next(); pts[i].y = rs.next(); }
     if abs(correctClosestPair(pts) - closestPair(pts)) > 1e-12 then return false;
   }
   return true;
@@ -32,7 +32,7 @@ proc main() {
   const n = problemSize;
   var pts: [0..<n] Point;
   var rs = new randomStream(real, seed=42);
-  for i in 0..<n { pts[i].x = rs.rand(); pts[i].y = rs.rand(); }
+  for i in 0..<n { pts[i].x = rs.next(); pts[i].y = rs.next(); }
 
   const isValid = doValidate();
   writeln("Validation: ", if isValid then "PASS" else "FAIL");
