@@ -158,6 +158,10 @@ VALIDATORS = {
     "hpx" : HPXValidator()
 }
 
+# Add Chapel validator if available
+if HAS_CHAPEL_VALIDATORS:
+    VALIDATORS["chapel"] = ChapelEmptyValidator()
+
 class DriverWrapper(ABC):
     """ Abstract base class for driver wrappers. """
 
