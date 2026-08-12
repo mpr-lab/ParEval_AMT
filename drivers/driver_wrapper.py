@@ -12,6 +12,12 @@ import sys
 # local imports
 from util import all_equal, mean
 from cpp.parallel_validation import Validator, OMPValidator, MPIValidator, MPIandOMPValidator, EmptyValidator, HPXValidator
+try:
+    from chapel.parallel_validation import ChapelOMPValidator, ChapelMPIValidator, ChapelMPIandOMPValidator, ChapelEmptyValidator
+    HAS_CHAPEL_VALIDATORS = True
+except ImportError:
+    HAS_CHAPEL_VALIDATORS = False
+
 
 class BuildOutput:
     """ Represents the output of a single build. """
@@ -125,6 +131,7 @@ LANGUAGE_EXTENSIONS = {
     "c": ".c",
     "python": ".py",
     "fortran": ".f90",
+    "chapel": ".chpl",
 }
 
 """ MODEL TO DRIVER FILE BASENAME MAPPING """

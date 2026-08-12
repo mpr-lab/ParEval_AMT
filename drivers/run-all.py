@@ -19,12 +19,14 @@ from tqdm import tqdm
 # local imports
 from driver_wrapper import DriverWrapper
 from cpp.cpp_driver_wrapper import CppDriverWrapper
+from chapel.chapel_driver_wrapper import ChapelDriverWrapper
 from util import await_input, load_json
 
 
 """ Map language names to driver wrappers """
 LANGUAGE_DRIVERS = {
     "cpp": CppDriverWrapper,
+    "chapel": ChapelDriverWrapper,
 }
 
 def get_args():
