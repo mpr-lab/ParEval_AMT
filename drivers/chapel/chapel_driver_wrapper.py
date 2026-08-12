@@ -116,7 +116,7 @@ class ChapelDriverWrapper(DriverWrapper):
             return RunOutput(-1, "", f"UnicodeDecodeError: {str(e)}", config=run_config)
         return RunOutput(run_process.returncode, run_process.stdout, run_process.stderr, config=run_config)
 
-    def test_single_output(self, prompt: str, output: str, test_driver_file: PathLike, problem_size: str) -> GeneratedTextResult:
+    def test_single_output(self, prompt: str, output: str, test_driver_file: PathLike, problem_size: str, problem_type: str = None) -> GeneratedTextResult:
         """ Test a single generated output. """
         logging.debug(f"Testing output:\n{output}")
         with tempfile.TemporaryDirectory(dir=self.scratch_dir) as tmpdir:
